@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 title = "Baseball Game";
+=======
+title = "game";
+>>>>>>> 30639241c1224c6c510cb239078ad03d1d09f6bb
 
 description = `
 `;
@@ -20,6 +24,9 @@ lllll
  lll
 `
 ];
+
+let startTime;
+let num = 1;
 
 options = {
   theme: 'simple'
@@ -68,6 +75,7 @@ const G = {
 
 function update() {
   if (!ticks) {
+<<<<<<< HEAD
     balls = [];
     waveCount = 0;
     ballSpeed = 0;
@@ -109,3 +117,23 @@ remove(bombs, (bo) => {
 //text(balls.length.toString(), 3, 10);
 
 }
+=======
+    startTime = Date.now();
+  }
+
+  color("yellow");
+  if (input.isJustPressed) {
+    play("laser"); //change the sound later
+    line(50, 50, 66, 36, 5);
+  } else {
+    line(50, 50, 66, 66, 5);
+  }
+
+  text("Time Left:", 14, 10);
+  num = Math.floor(61 - ((Date.now() - startTime) / 1000));
+  if(num < 0) {
+    end();
+  }
+  text(num.toString(), 77, 10);
+}
+>>>>>>> 30639241c1224c6c510cb239078ad03d1d09f6bb
