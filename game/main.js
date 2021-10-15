@@ -2,6 +2,7 @@ title = "BASEBALL";
 
 description = `
 [Tap] Swing
+AVOID BOMB
 `;
 
 characters = [
