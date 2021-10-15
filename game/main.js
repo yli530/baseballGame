@@ -1,6 +1,7 @@
-title = "game";
+title = "BASEBALL";
 
 description = `
+[Tap] Swing
 `;
 
 characters = [];
