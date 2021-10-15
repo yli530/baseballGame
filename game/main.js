@@ -139,7 +139,13 @@ function update() {
     bo.pos.y += ballSpeed;
     char("b", bo.pos);
 
-    return (bo.pos.y > G.HEIGHT);
+	const collideWithBat = char("b", bo.pos).isColliding.rect.yellow;
+
+    if(collideWithBat) {
+      //addScore(-10, bo.pos);
+    }
+
+    return (collideWithBat || bo.pos.y > G.HEIGHT);
   });
 
   color("light_black");
