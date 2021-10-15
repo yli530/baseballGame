@@ -115,9 +115,9 @@ function update() {
   color("yellow");
   if (input.isJustPressed) {
     play("laser"); //change the sound later
-    line(30, 80, 46, 64, 3);
+    line(30, 80, 36, 74, 3);
   } else {
-    line(30, 80, 46, 96, 3);
+    line(30, 80, 36, 86, 3);
   }
 
   color("light_black");
