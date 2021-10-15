@@ -6,11 +6,11 @@ description = `
 
 characters = [
   `
- lll
-lr rl 
-l r l
-lr rl
- lll
+ yyy
+yr ry 
+y r y
+yr ry
+ yyy
 `,
   `
   r
@@ -19,14 +19,24 @@ lllll
 lllll
 lllll
  lll
+`,
+`
+  ll
+  ll l
+llllll
+ llll
+ l  l
 `
 ];
 
 let startTime;
 let num = 1;
+let rotate = 0;
+let swinging = false;
+let swingPos = {x:0, y:0}
 
 options = {
-  theme: 'simple'
+  theme: 'shapeDark'
 };
 
 
@@ -62,7 +72,6 @@ let waveCount;
 */
 let bombs;
 
-
 const G = {
   BALL_MIN_BASE_SPEED: 1,
   BALL_MAX_BASE_SPEED: 1.5,
@@ -79,6 +88,22 @@ function update() {
     startTime = Date.now();
   }
 
+  char('c', input.pos.x, input.pos.y);
+
+  color("yellow");
+  if (input.isJustPressed && !swinging) {
+    swinging = true;
+  }
+  if (swinging) {
+    play("laser"); //change the sound later
+    bar(input.pos.x + 3, input.pos.y, 15, 2, (rotate + 30)*Math.PI/180, 0);
+    rotate -= 8; //speed of swing
+    if(rotate < -90) {
+      swinging = false;
+      rotate = 0;
+    }
+  }
+
   if (balls.length === 0) {
     ballSpeed =
       rnd(G.BALL_MIN_BASE_SPEED, G.BALL_MAX_BASE_SPEED) * difficulty;
@@ -90,11 +115,15 @@ function update() {
   }
   remove(balls, (ba) => {
     ba.pos.y += ballSpeed;
-    char("a", ba.pos);
 
-    return (ba.pos.y > G.HEIGHT);
+    const collideWithBat = char("a", ba.pos).isColliding.rect.yellow;
+
+    if(collideWithBat) {
+      addScore(10, ba.pos);
+    }
+
+    return (collideWithBat || ba.pos.y > G.HEIGHT);
   });
-  console.log(ballSpeed);
 
   if (bombs.length === 0) {
     ballSpeed =
@@ -106,19 +135,12 @@ function update() {
     }
   }
   remove(bombs, (bo) => {
+    color("black");
     bo.pos.y += ballSpeed;
     char("b", bo.pos);
 
     return (bo.pos.y > G.HEIGHT);
   });
-
-  color("yellow");
-  if (input.isJustPressed) {
-    play("laser"); //change the sound later
-    line(30, 80, 36, 74, 3);
-  } else {
-    line(30, 80, 36, 86, 3);
-  }
 
   color("light_black");
   text("Time Left:", 14, 10);
@@ -127,5 +149,4 @@ function update() {
     end();
   }
   text(num.toString(), 77, 10);
-
 }
