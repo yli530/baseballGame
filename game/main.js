@@ -7,19 +7,19 @@ AVOID BOMB
 
 characters = [
   `
- yyy
-yr ry 
-y r y
-yr ry
- yyy
+ lll
+lC Cl 
+l C l
+lC Cl
+ lll
 `,
   `
-  r
- lll
-lllll
-lllll
-lllll
- lll
+  R
+ LLL
+LLLLL
+LLLLL
+LLLLL
+ LLL
 `,
   `
   ll
@@ -133,7 +133,7 @@ function update() {
   }
   remove(balls, (ba) => {
     ba.pos.y += ballSpeed;
-
+    color("black");
     const collideWithBat = char("a", ba.pos).isColliding.rect.yellow;
 
     if (collideWithBat) {
