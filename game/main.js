@@ -139,7 +139,7 @@ function update() {
     if (collideWithBat) {
       addScore(10, ba.pos);
       if(score % 250 == 0) {
-        num -= 5;
+        startTime += 5000;
       }
     }
 
