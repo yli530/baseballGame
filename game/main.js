@@ -40,7 +40,11 @@ let stunned;
 options = {
   theme: 'shapeDark',
   isPlayingBgm: true,
-  seed: 1
+  seed: 1, 
+
+  isCapturing: true,
+  isCapturingGameCanvasOnly: true,
+  captureCanvasScale: 2
 };
 
 
