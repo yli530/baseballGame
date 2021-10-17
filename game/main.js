@@ -38,7 +38,9 @@ let swingPos = { x: 0, y: 0 }
 let stunned;
 
 options = {
-  theme: 'shapeDark'
+  theme: 'shapeDark',
+  isPlayingBgm: true,
+  seed: 1
 };
 
 
@@ -113,7 +115,6 @@ function update() {
     play("select");
   }
   if (swinging && !stunned) {
-    play("laser"); //change the sound later
     bar(input.pos.x + 3, input.pos.y, 15, 2, (rotate + 30) * Math.PI / 180, 0);
     rotate -= 8; //speed of swing
     if (rotate < -90) {
@@ -137,6 +138,7 @@ function update() {
     const collideWithBat = char("a", ba.pos).isColliding.rect.yellow;
 
     if (collideWithBat) {
+      play("coin");
       addScore(10, ba.pos);
       if(score % 250 == 0) {
         startTime += 5000;
